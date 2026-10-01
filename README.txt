@@ -4,3 +4,4 @@ Another unstaged line
 Project description
 One more line
 Change from the first copy
+Updated description from PR
