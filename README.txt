@@ -5,3 +5,5 @@ Project description
 One more line
 Change from the first copy
 Updated description from PR
+Conflicting change directly in main
+
