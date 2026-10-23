@@ -1,0 +1,18 @@
+## Проверка KVM в WSL
+16
+crw-rw---- 1 root kvm 10, 232 Oct 23 15:44 /dev/kvm
+INFO: /dev/kvm exists
+KVM acceleration can be used
+
+## Процесс QEMU
+2087 qemu-system-x86_64 -enable-kvm -cpu host -m 2048 -smp 2 -drive file=vm.qcow2,if=virtio -drive file=seed.img,format=raw,if=virtio -netdev user,id=net0,hostfwd=tcp::2222-:22,hostfwd=tcp::8081-:8080 -device virtio-net-pci,netdev=net0 -display none -daemonize
+
+## Внутри VM
+ubuntu
+Linux ubuntu 5.15.0-198-generic #208-Ubuntu SMP Fri Sep 4 10:22:38 UTC 2026 x86_64 x86_64 x86_64 GNU/Linux
+NAME             IMAGE          COMMAND                  SERVICE    CREATED         STATUS         PORTS
+app-backend-1    app-backend    "python app.py"          backend    7 minutes ago   Up 7 minutes   
+app-frontend-1   app-frontend   "/docker-entrypoint.…"   frontend   7 minutes ago   Up 7 minutes   0.0.0.0:8080->80/tcp, [::]:8080->80/tcp
+
+## Запрос к бэкенду
+{"message":"\u041f\u0440\u0438\u0432\u0435\u0442 \u043e\u0442 \u0431\u044d\u043a\u0435\u043d\u0434\u0430!"}
