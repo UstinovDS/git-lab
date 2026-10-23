@@ -1,0 +1,10 @@
+<!doctype html>
+<meta charset="utf-8">
+<h1>Фронтенд</h1>
+<p id="out">Загрузка...</p>
+<script>
+  fetch("/api/hello")
+    .then(r => r.json())
+    .then(d => out.textContent = d.message)
+    .catch(e => out.textContent = "Ошибка: " + e);
+</script>
